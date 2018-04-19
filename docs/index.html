@@ -1,50 +1,71 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-<style>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 500px;
+        width: 600px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+  </head>
+  <body>
+    <main role="main" class="container">
+      <h1 class="mt-5">San Francisco Crime History Visualization</h1>
+      <p class="lead">Author: Zizhen Song, Fang Wang</p>
+    </main>
+    <div class = "row">
+      <div class = "col-1"></div>
+      <div id="map" class = "col-10"></div>
+      <div class = "col-1"></div>
+    </div>
+    <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: {lat: 37.773972, lng: -122.431297},
+          //mapTypeId: 'terrain',
+          styles:[{"stylers": [{"saturation": -25},{"lightness": 1}]}]  
+        });
 
-html, body, #map {
-  width: 800px;
-  height: 500px;
-  margin: 0;
-  padding: 0;
-}
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
 
-.stations, .stations svg {
-  position: absolute;
-}
+        // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
 
-.stations svg {
-  width: 60px;
-  height: 20px;
-  padding-right: 100px;
-  font: 10px sans-serif;
-}
+      }
 
-.stations circle {
-  fill: brown;
-  stroke: black;
-  stroke-width: 1.5px;
-}
-
-</style>
-<div id="map"></div>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/2.10.0/d3.v2.min.js"></script>
-
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script>
-
-// Create the Google Map…
-var map = new google.maps.Map(d3.select("#map").node(), {
-  zoom: 12,
-  center: new google.maps.LatLng(37.76487, -122.41948),
-  mapTypeId: google.maps.MapTypeId.TERRAIN
-});
-
-// Load the station data. When the data comes back, create an overlay.
-d3.json("https://github.com/ambersongzz/SF-Crime-Visualization/blob/master/docs/stations.json", function(error, data) {
+      function eqfeed_callback(results) {
+        var heatmapData = [];
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1], coords[0]);
+          heatmapData.push(latLng);
+        }
+        var heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          dissipating: false,
+          map: map
+        });
+      }
+d3.json("test.json", function(error, data) {
   if (error) throw error;
 
   var overlay = new google.maps.OverlayView();
@@ -81,7 +102,7 @@ d3.json("https://github.com/ambersongzz/SF-Crime-Visualization/blob/master/docs/
           .text(function(d) { return d.key; });
 
       function transform(d) {
-        d = new google.maps.LatLng(d.value[1], d.value[0]);
+        d = new google.maps.LatLng(d.value[0], d.value[1]);
         d = projection.fromLatLngToDivPixel(d);
         return d3.select(this)
             .style("left", (d.x - padding) + "px")
@@ -93,5 +114,9 @@ d3.json("https://github.com/ambersongzz/SF-Crime-Visualization/blob/master/docs/
   // Bind our overlay to the map…
   overlay.setMap(map);
 });
-
-</script>
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRFlENs7Lp5A7TPjqpwEArhpjRLpcT5Uo&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+</html>
