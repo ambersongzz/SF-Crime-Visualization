@@ -8,17 +8,111 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  
+  <style>
+    .img-profile{
+      height: 100px;
+      width:100px;
+    }
+    header.masthead {
+    text-align: center;
+    color: #fff;
+    background-image: url(img/header.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:300px;
+    }
+    #intro {
+    text-align: center;
+    margin-bottom: 35px;
+    padding-top: 15px;
+    }
+    #intro .timestamp-container p.timestamp {
+    text-transform: uppercase;
+    margin: 0;
+    }
+    #intro .byline, #intro .timestamp-container p.timestamp {
+        padding-top: 30px;
+        color: #939598;
+        letter-spacing: .5px;
+        font-size: 12px;
+        font-family: "DecimaMonoPro",monospace;
+        font: 17px/26px ArnhemPro,Georgia,"Times New Roman",serif;
+    }
+    #intro h1 {
+        color: #222;
+        line-height: 1.27;
+        font-size: 40px;
+    }
+    #intro .article-subtitle, #intro h1, #intro p.methodology-link {
+        margin-bottom: 0;
+        margin-top: 5px;
+    }
+    #intro .article-subtitle, #intro h1, #intro p.methodology-link, body, h1, h2, h3, h4, h5, h6 {
+        font-family: AtlasGrotesk,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6, p, svg text {
+        -webkit-font-smoothing: subpixel-antialiased;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        color: #222;
+        font-weight: 700;
+    }
+    #intro .article-subtitle {
+    margin-top: 0;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 400;
+    color: #222;
+    }
+
+  </style>
 </head>
 
 <body>
-  <header>
 
   <main role="main" class="container">
-      <h1 class="mt-5">Califonia County Crime Map</h1>
-      <p class="lead">Author: Zizhen Song, Fang Wang</p>
+    <header class="masthead">
+      <div class="container">
+        <div class="intro-text">
+          <div class="intro-lead-in"></div>
+          <div class="intro-heading text-uppercase"></div>
+        </div>
+      </div>
+    </header>
+
+    <div id="intro">
+      <div class="timestamp-container">
+        <p class="timestamp">UPDATED 4:00 PM EDT | Apr 2, 2018</p>
+      </div><h1>32 Years of California Crime</h1>
+      <h2 class="article-subtitle">Mortality rates for leading causes of death in every U.S. county from 1980 to 2014.</h2>
+    </div>
+
+        <div class="row text-center">
+          <div class="col-md-2"></div>
+          <div class="col-md-4">
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/amber_profile.png" alt="">
+            </span>
+            <h4 class="service-heading">Zizhen (Amber) Song</h4>
+            <p class="text-muted">Zizhen is so great!</p>
+          </div>
+          <div class="col-md-4">
+            <span class="d-none d-lg-block">
+                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/fang_profile.png" alt="">
+            </span>
+            <h4 class="service-heading">Fang Wang</h4>
+            <p class="text-muted">Fang is also great!</p>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+
     </main>
-  </header>
+
   <div class="row">
     <div class="col-1"></div>
     <div id="plotly-div" clas="col-10"></div>
