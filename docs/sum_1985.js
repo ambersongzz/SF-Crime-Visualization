@@ -221,7 +221,7 @@ layout = {
     zeroline: false
   }
 };
-Plotly.plot('plotly-div', {
+Plotly.plot('crime_choropleth', {
   data: data,
   layout: layout
 });

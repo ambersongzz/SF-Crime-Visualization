@@ -8,7 +8,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-
+  <script src="main.js"></script>
   <script>
 function includeHTML() {
   var z, i, elmnt, file, xhttp;
@@ -117,7 +117,7 @@ function includeHTML() {
 
     <div id="intro">
       <div class="timestamp-container">
-        <p class="timestamp">UPDATED 6:00 PM EDT | Apr 20, 2018</p>
+        <p class="timestamp">UPDATED 11:00 PM PDT | Apr 25, 2018</p>
       </div><h1>32 Years of California Crime</h1>
       <h2 class="article-subtitle">Crime number/rate in each California county from 1985 to 2016.</h2>
     </div>
@@ -129,7 +129,7 @@ function includeHTML() {
                 <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/amber_profile.png" alt="">
             </span>
             <h4 class="service-heading">Zizhen (Amber) Song</h4>
-            <p class="text-muted">Zizhen is so great! (Silly William want to be here haha)</p>
+            <p class="text-muted">Zizhen is so great!</p>
           </div>
           <div class="col-md-4">
             <span class="d-none d-lg-block">
@@ -143,18 +143,70 @@ function includeHTML() {
 
     </main>
 
-  <div class="row">
-    <div class="col-1"></div>
-    <div id="plotly-div" clas="col-10"></div>
-    <script src="static_choropleth.js"></script>
-    <div class="col-1"></div>
+  <div class="row" style="padding-top: 50px;">
+  	<div class="col-3"></div>
+    <div clas="col-3">
+    	<div class="btn-group">
+		  <button type="button" class="btn btn-danger">Crime Sum</button>
+		  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    <span class="sr-only">Toggle Dropdown</span>
+		  </button>
+		  <div class="dropdown-menu">
+		    <a class="dropdown-item" id="crime_sum">Crime Sum</a>
+		    <a class="dropdown-item" id="violent">Violent</a>
+		    <a class="dropdown-item" id="Homicide">Homicide</a>
+		    <a class="dropdown-item" id="Forcible_Rape">Forcible_Rapes</a>
+		    <a class="dropdown-item" id="Robbery">Robbery</a>
+		    <a class="dropdown-item" id="Aggravated_Assaults">Aggravated_Assaults</a>
+		    <a class="dropdown-item" id="Property">Property</a>
+		    <a class="dropdown-item" id="Burglary">Burglary</a>
+		    <a class="dropdown-item" id="Vehicle_Theft">Vehicle_Theft</a>
+		    <a class="dropdown-item" id="Larcency_Theft">Larcency_Theft</a>
+
+
+<!-- 		    <div class="dropdown-divider"></div>
+		    <a class="dropdown-item" href="#">Separated link</a> -->
+		  </div>
+		</div>
+    </div>
+    <div class="col-6"></div>
   </div>
 
   <div class="row">
+    <div class="col-1"></div>
+    <div id="crime_choropleth" clas="col-10"></div>
+    <script src="sum_1985.js"></script>
+    <div class="col-1"></div>
+  </div>
+    
+  <div class="row">
+    <div class="col-2"></div>
+    <div id="line_county" clas="col-9"></div>
+    <script src="line_county.js"></script>
+    <div class="col-1"></div>
+  </div>
 
-    <div id="plotly-play" clas="col-12"></div>
-    <script src="play.js"></script>
+   <div class="row">
+    <div class="col-2"></div>
+    <div id="line_crime" clas="col-9"></div>
+    <script src="line_crime.js"></script>
+    <div class="col-1"></div>
+  </div>
 
+<!--   <div class="row">
+    <div class="col-1">
+    </div>
+    <div id="violent_1985" clas="col-10"></div>
+    <script src="violent_1985.js"></script>
+    <div class="col-1"></div>
+  </div> -->
+
+
+
+  <div class="row" style="padding-bottom: 100px;">
+  	<div class="col-4"></div>
+    <div clas="col-4"><a href="play.html">Animation Bubble</a></div>
+    <div class="col-4"></div>
   </div>
   
 <!--   <div class="row">
