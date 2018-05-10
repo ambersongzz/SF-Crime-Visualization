@@ -1,22 +1,4 @@
-// You can reproduce this figure in plotly.js with the following code!
 
-// Learn more about plotly.js here: https://plot.ly/javascript/getting-started
-
-/* Here's an example minimal HTML template
- *
- * <!DOCTYPE html>
- *   <head>
- *     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
- *   </head>
- *   <body>
- *   <!-- Plotly chart will be drawn inside this div -->
- *   <div id="plotly-div"></div>
- *     <script>
- *     // JAVASCRIPT CODE GOES HERE
- *     </script>
- *   </body>
- * </html>
- */
 
 trace1 = {
   x: [-120.072392, -119.880303, -119.904315, -119.579476, -119.621072, -119.542862, -119.561995, -119.622093, -119.606565, -119.639205, -119.700029, -119.708452, -119.884749, -120.072566, -120.072392, null, -121.057479, -121.024383, -121.009477, -120.94012, -120.934366, -120.870988, -120.792484, -120.749929, -120.679907, -120.654124, -120.001319008, -120.003117297, -120.505445, -120.560823, -120.655217, -120.75624, -121.022085, -121.057479], 
